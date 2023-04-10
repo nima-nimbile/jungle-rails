@@ -1,0 +1,18 @@
+class User < ApplicationRecord
+  has_secure_password
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, presence: true , uniqueness:{ case_sensitive:false }
+  validates :password, presence: true, length:{ minimum:6 }
+  
+  def self.authenticate_with_credentials (email, password)
+    @no_spaces_email =email.strip
+    @user = User.find_by("email ILIKE ?",@no_spaces_email)
+    if @user && @user.authenticate(password)
+      @user
+    else
+       nil
+    end
+  end 
+end

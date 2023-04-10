@@ -42,6 +42,30 @@
           <%# </ul>
         </li> %>
       </ul>
+      
+      <li>
+      <%= link_to 'About',  [:about, :index] %>
+    </li>
+
+      <ul>
+      <% if current_user %>
+      <li>
+      <span class="navbar-text">
+        Signed in as <%= current_user.first_name %> 
+      </span>
+      </li>
+      <li> 
+        <%= link_to "Logout", '/logout' %>
+      </li>
+      <% else %>
+      <li>
+        <%= link_to 'Login', '/login' %> 
+      </li>
+      <li>
+        <%= link_to 'Signup', '/signup' %>
+      </li>
+      <% end %>
+      
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item dropdown">
           <a
